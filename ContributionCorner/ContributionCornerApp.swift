@@ -55,8 +55,10 @@ struct SettingsView: View {
             Spacer()
             HStack {
                 Spacer()
-                Button("Cancel", role: .cancel, action: closeWindow).buttonStyle(.bordered)
-                Button("Save", action: save).buttonStyle(.borderedProminent)
+                Button("Cancel", role: .cancel, action: closeWindow)
+                    .buttonStyle(.bordered)
+                Button("Save", action: save)
+                    .buttonStyle(.borderedProminent)
             }
         }
         .frame(width: 400, height: 200)
@@ -75,6 +77,6 @@ struct SettingsView: View {
     }
     
     func closeWindow() {
-        
+        NSApplication.shared.keyWindow?.close()
     }
 }
