@@ -9,37 +9,81 @@ import SwiftUI
 import AxisContribution
 
 struct ContributionsView: View {
-    let githubParser = GithubParser()
+    @AppStorage("username") private var username: String = ""
+    @AppStorage("showContributionCount") private var showContributionsCount: Bool = true
+
     @State private var contributions: [Date] = []
-    @State private var username: String = "lundeful"
     @State private var isLoading = true
+
+    let githubParser = GithubParser()
     
-    let startDate: Date = Date.getDateFromOneYearAgo(for: Calendar.current.date(byAdding: .day, value: +2, to: Date.now)!)!
+    var usernameView: some View {
+        HStack {
+            Spacer()
+            Text(username)
+            Spacer()
+        }
+    }
+    
+    var refreshButton: some View {
+        Button {
+            Task {
+                await getContributions()
+            }
+        } label: {
+            Image(systemName: "arrow.clockwise")
+        }
+        .buttonStyle(.plain)
+    }
+    
+    var settingsButton: some View {
+        Button {
+            if #available(macOS 13.0, *) {
+                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
+            }
+            else {
+                NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
+            }
+            NSApp.activate(ignoringOtherApps: true)
+        } label: {
+            Image(systemName: "gear")
+        }
+        .buttonStyle(.plain)
+    }
+    
+    var toolbar: some View {
+        ZStack {
+            usernameView
+            HStack {
+                Text(showContributionsCount ? "\(contributions.count) contributions" : "")
+                Spacer()
+                refreshButton
+                settingsButton
+            }
+        }
+    }
 
     var body: some View {
-        Group {
-            if isLoading {
-                ProgressView()
-            } else {
-                VStack(alignment: .leading ) {
-                    HStack(alignment: .top) {
-                        Text("\(contributions.count) contributions")
-                        Spacer()
-                        Button {
-                            Task {
-                                await getContributions()
-                            }
-                        } label: {
-                            Image(systemName: "arrow.clockwise")
-                        }.buttonStyle(.plain)
-                        Button {
-                            NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-                        } label: {
-                            Image(systemName: "gear")
-                        }.buttonStyle(.plain)
-                    }
-                    AxisContribution(constant: .init(), source: contributions)
+        VStack {
+            toolbar
+            if username.isEmpty {
+                Spacer()
+                HStack(alignment: .center) {
+                    Spacer()
+                    Text("Enter your GitHub username in settings to get started")
+                    Spacer()
                 }
+                Spacer()
+            } else if isLoading {
+                Spacer()
+                HStack {
+                    Spacer()
+                    ProgressView()
+                    Spacer()
+                }
+                Spacer()
+            } else {
+                AxisContribution(constant: .init(), source: contributions)
             }
         }
         .frame(width: 820, height: 150)
