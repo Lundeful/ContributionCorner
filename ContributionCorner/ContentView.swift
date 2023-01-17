@@ -17,16 +17,15 @@ struct ContentView: View {
     let startDate: Date = Date.getDateFromOneYearAgo(for: Calendar.current.date(byAdding: .day, value: +2, to: Date.now)!)!
 
     var body: some View {
-        VStack {
-            Text("Commitment Corner")
-                .font(.title)
-                .bold()
+        Group {
             if isLoading {
                 ProgressView()
             } else {
                 AxisContribution(constant: .init(), source: contributions)
             }
         }
+        .frame(width: 820, height: 150)
+        .padding()
         .task {
             await getContributions()
         }
