@@ -12,10 +12,12 @@ import Combine
 struct ContributionsView: View {
     @AppStorage("username") private var username: String = ""
     @AppStorage("showContributionCount") private var showContributionsCount: Bool = true
+    @AppStorage("showUsername") private var showUsername: Bool = true
     @AppStorage("pollingRate") private var pollingRate: Double = 15
 
     @State private var contributions: [Date] = []
     @State private var isLoading = true
+    @State private var errorMessage = ""
 
     private let githubParser = GithubParser()
 
@@ -25,7 +27,7 @@ struct ContributionsView: View {
     var usernameView: some View {
         HStack {
             Spacer()
-            Text(username)
+            Text(showUsername ? username : "")
             Spacer()
         }
     }
@@ -81,17 +83,24 @@ struct ContributionsView: View {
                 Spacer()
             } else if isLoading {
                 Spacer()
-                HStack {
-                    Spacer()
+                HStack(alignment: .center) {
                     ProgressView()
-                    Spacer()
                 }
                 Spacer()
             } else {
                 AxisContribution(constant: .init(), source: contributions)
             }
+            if !errorMessage.isEmpty {
+                HStack {
+                    Spacer()
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.red)
+                            Text("Error occured while fetching contribution data")
+                    Spacer()
+                }
+            }
         }
-        .frame(width: 820, height: 150)
+        .frame(width: 820, height: 200)
         .padding()
         .onAppear(perform: instantiateTimer)
         .task {
@@ -131,6 +140,8 @@ struct ContributionsView: View {
             case .success(let days):
                 contributions = days
             case .failure(let error):
+                contributions = []
+                errorMessage = error.localizedDescription
                 print(error.localizedDescription)
             }
             withAnimation {
