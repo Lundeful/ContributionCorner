@@ -11,6 +11,11 @@
 		83CA270A2976CCD400CF2B15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27092976CCD400CF2B15 /* ContentView.swift */; };
 		83CA270C2976CCD500CF2B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CA270B2976CCD500CF2B15 /* Assets.xcassets */; };
 		83CA270F2976CCD500CF2B15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CA270E2976CCD500CF2B15 /* Preview Assets.xcassets */; };
+		83CA27182976CDD300CF2B15 /* AxisContribution in Frameworks */ = {isa = PBXBuildFile; productRef = 83CA27172976CDD300CF2B15 /* AxisContribution */; };
+		83CA271B2976CE5C00CF2B15 /* SwiftSoup in Frameworks */ = {isa = PBXBuildFile; productRef = 83CA271A2976CE5C00CF2B15 /* SwiftSoup */; };
+		83CA271D2976CE7300CF2B15 /* GithubParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA271C2976CE7300CF2B15 /* GithubParser.swift */; };
+		83CA271F2976CEA300CF2B15 /* Contribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA271E2976CEA300CF2B15 /* Contribution.swift */; };
+		83CA27212976CEEC00CF2B15 /* Date-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +25,9 @@
 		83CA270B2976CCD500CF2B15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83CA270E2976CCD500CF2B15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		83CA27102976CCD500CF2B15 /* ContributionCorner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContributionCorner.entitlements; sourceTree = "<group>"; };
+		83CA271C2976CE7300CF2B15 /* GithubParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubParser.swift; sourceTree = "<group>"; };
+		83CA271E2976CEA300CF2B15 /* Contribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contribution.swift; sourceTree = "<group>"; };
+		83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -27,6 +35,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CA27182976CDD300CF2B15 /* AxisContribution in Frameworks */,
+				83CA271B2976CE5C00CF2B15 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -52,8 +62,11 @@
 		83CA27062976CCD400CF2B15 /* ContributionCorner */ = {
 			isa = PBXGroup;
 			children = (
+				83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */,
 				83CA27072976CCD400CF2B15 /* ContributionCornerApp.swift */,
 				83CA27092976CCD400CF2B15 /* ContentView.swift */,
+				83CA271C2976CE7300CF2B15 /* GithubParser.swift */,
+				83CA271E2976CEA300CF2B15 /* Contribution.swift */,
 				83CA270B2976CCD500CF2B15 /* Assets.xcassets */,
 				83CA27102976CCD500CF2B15 /* ContributionCorner.entitlements */,
 				83CA270D2976CCD500CF2B15 /* Preview Content */,
@@ -85,6 +98,10 @@
 			dependencies = (
 			);
 			name = ContributionCorner;
+			packageProductDependencies = (
+				83CA27172976CDD300CF2B15 /* AxisContribution */,
+				83CA271A2976CE5C00CF2B15 /* SwiftSoup */,
+			);
 			productName = ContributionCorner;
 			productReference = 83CA27042976CCD400CF2B15 /* ContributionCorner.app */;
 			productType = "com.apple.product-type.application";
@@ -113,6 +130,10 @@
 				Base,
 			);
 			mainGroup = 83CA26FB2976CCD400CF2B15;
+			packageReferences = (
+				83CA27162976CDD300CF2B15 /* XCRemoteSwiftPackageReference "AxisContribution" */,
+				83CA27192976CE5C00CF2B15 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
+			);
 			productRefGroup = 83CA27052976CCD400CF2B15 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +160,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83CA27212976CEEC00CF2B15 /* Date-Extensions.swift in Sources */,
+				83CA271D2976CE7300CF2B15 /* GithubParser.swift in Sources */,
+				83CA271F2976CEA300CF2B15 /* Contribution.swift in Sources */,
 				83CA270A2976CCD400CF2B15 /* ContentView.swift in Sources */,
 				83CA27082976CCD400CF2B15 /* ContributionCornerApp.swift in Sources */,
 			);
@@ -336,6 +360,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		83CA27162976CDD300CF2B15 /* XCRemoteSwiftPackageReference "AxisContribution" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jasudev/AxisContribution.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+		83CA27192976CE5C00CF2B15 /* XCRemoteSwiftPackageReference "SwiftSoup" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/scinfu/SwiftSoup.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		83CA27172976CDD300CF2B15 /* AxisContribution */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83CA27162976CDD300CF2B15 /* XCRemoteSwiftPackageReference "AxisContribution" */;
+			productName = AxisContribution;
+		};
+		83CA271A2976CE5C00CF2B15 /* SwiftSoup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 83CA27192976CE5C00CF2B15 /* XCRemoteSwiftPackageReference "SwiftSoup" */;
+			productName = SwiftSoup;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 83CA26FC2976CCD400CF2B15 /* Project object */;
 }
