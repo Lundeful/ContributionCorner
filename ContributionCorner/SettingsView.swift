@@ -19,15 +19,20 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        Form {
-            TextField("GitHub username", text: $username)
-                .frame(maxWidth: 350)
-            Toggle("Show contribution count", isOn: $showContributionCount)
-                .toggleStyle(.switch)
-            
-            TextField("Update rate (minutes)", value: $pollingRate, format: .number)
+        VStack {
+            Form {
+                TextField("GitHub username", text: $username)
+                Toggle("Show contribution count", isOn: $showContributionCount)
+                    .toggleStyle(.switch)
+                
+                TextField("Update rate (minutes)", value: $pollingRate, format: .number)
+            }
             Spacer()
             HStack {
+                Button("Quit") {
+                    NSRunningApplication.current.terminate()
+                }
+                .buttonStyle(.bordered)
                 Spacer()
                 Button("Cancel", role: .cancel, action: closeWindow)
                     .buttonStyle(.bordered)
