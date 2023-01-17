@@ -7,16 +7,21 @@
 
 import SwiftUI
 import AxisContribution
+import Combine
 
 struct ContributionsView: View {
     @AppStorage("username") private var username: String = ""
     @AppStorage("showContributionCount") private var showContributionsCount: Bool = true
+    @AppStorage("pollingRate") private var pollingRate: Double = 15
 
     @State private var contributions: [Date] = []
     @State private var isLoading = true
 
-    let githubParser = GithubParser()
-    
+    private let githubParser = GithubParser()
+
+    @State var timer: Timer.TimerPublisher = Timer.publish(every: 3, on: .main, in: .common)
+    @State var connectedTimer: Cancellable? = nil
+
     var usernameView: some View {
         HStack {
             Spacer()
@@ -88,9 +93,33 @@ struct ContributionsView: View {
         }
         .frame(width: 820, height: 150)
         .padding()
+        .onAppear(perform: instantiateTimer)
         .task {
             await getContributions()
         }
+        .onChange(of: pollingRate) { rate in
+            restartTimer()
+        }
+        .onReceive(timer) { _ in
+            Task { await getContributions() }
+        }
+    }
+
+    func instantiateTimer() {
+        self.timer = Timer.publish(every: max(60 * pollingRate, 60 * 15), on: .main, in: .common)
+        self.connectedTimer = self.timer.connect()
+        return
+    }
+    
+    func cancelTimer() {
+        self.connectedTimer?.cancel()
+        return
+    }
+
+    func restartTimer() {
+        self.cancelTimer()
+        self.instantiateTimer()
+        return
     }
 
     func getContributions() async {
