@@ -6,42 +6,10 @@
 //
 
 import SwiftUI
-import AxisContribution
 
 struct ContentView: View {
-    let githubParser = GithubParser()
-    @State private var contributions: [Date] = []
-    @State private var username: String = "lundeful"
-    @State private var isLoading = true
-    
-    let startDate: Date = Date.getDateFromOneYearAgo(for: Calendar.current.date(byAdding: .day, value: +2, to: Date.now)!)!
-
     var body: some View {
-        Group {
-            if isLoading {
-                ProgressView()
-            } else {
-                AxisContribution(constant: .init(), source: contributions)
-            }
-        }
-        .frame(width: 820, height: 150)
-        .padding()
-        .task {
-            await getContributions()
-        }
-    }
-
-    func getContributions() async {
-        isLoading = true
-        await githubParser.getLastYearsContributionsAsDates(for: username) { result in
-            switch result {
-            case .success(let days):
-                contributions = days
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-            isLoading = false
-        }
+        ContributionsView()
     }
 }
 

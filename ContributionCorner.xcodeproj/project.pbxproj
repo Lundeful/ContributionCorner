@@ -16,6 +16,7 @@
 		83CA271D2976CE7300CF2B15 /* GithubParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA271C2976CE7300CF2B15 /* GithubParser.swift */; };
 		83CA271F2976CEA300CF2B15 /* Contribution.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA271E2976CEA300CF2B15 /* Contribution.swift */; };
 		83CA27212976CEEC00CF2B15 /* Date-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */; };
+		83CA27232976E9B100CF2B15 /* ContributionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27222976E9B100CF2B15 /* ContributionsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		83CA271C2976CE7300CF2B15 /* GithubParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubParser.swift; sourceTree = "<group>"; };
 		83CA271E2976CEA300CF2B15 /* Contribution.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contribution.swift; sourceTree = "<group>"; };
 		83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Extensions.swift"; sourceTree = "<group>"; };
+		83CA27222976E9B100CF2B15 /* ContributionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +67,7 @@
 				83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */,
 				83CA27072976CCD400CF2B15 /* ContributionCornerApp.swift */,
 				83CA27092976CCD400CF2B15 /* ContentView.swift */,
+				83CA27222976E9B100CF2B15 /* ContributionsView.swift */,
 				83CA271C2976CE7300CF2B15 /* GithubParser.swift */,
 				83CA271E2976CEA300CF2B15 /* Contribution.swift */,
 				83CA270B2976CCD500CF2B15 /* Assets.xcassets */,
@@ -164,6 +167,7 @@
 				83CA271D2976CE7300CF2B15 /* GithubParser.swift in Sources */,
 				83CA271F2976CEA300CF2B15 /* Contribution.swift in Sources */,
 				83CA270A2976CCD400CF2B15 /* ContentView.swift in Sources */,
+				83CA27232976E9B100CF2B15 /* ContributionsView.swift in Sources */,
 				83CA27082976CCD400CF2B15 /* ContributionCornerApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
