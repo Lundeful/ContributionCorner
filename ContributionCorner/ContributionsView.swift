@@ -97,9 +97,8 @@ struct ContributionsView: View {
         .task {
             await getContributions()
         }
-        .onChange(of: pollingRate) { rate in
-            restartTimer()
-        }
+        .onChange(of: username) { _ in Task { await getContributions() }}
+        .onChange(of: pollingRate) { _ in restartTimer() }
         .onReceive(timer) { _ in
             Task { await getContributions() }
         }
