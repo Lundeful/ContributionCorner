@@ -41,6 +41,7 @@ struct ContributionsView: View {
             Image(systemName: "arrow.clockwise")
         }
         .buttonStyle(.plain)
+        .focusable(false) // Removes focus ring, TODO: find alternative solution
     }
     
     var settingsButton: some View {
@@ -56,6 +57,7 @@ struct ContributionsView: View {
             Image(systemName: "gear")
         }
         .buttonStyle(.plain)
+        .focusable(false) // Removes focus ring, TODO: find alternative solution
     }
     
     var toolbar: some View {
