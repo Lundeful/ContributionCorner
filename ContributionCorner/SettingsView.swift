@@ -27,9 +27,10 @@ struct SettingsView: View {
         VStack {
             Form {
                 TextField("GitHub username", text: $username)
-                Toggle("Show contribution count", isOn: $showContributionCount)
+                Toggle("Display username", isOn: $showUsername)
                     .toggleStyle(.switch)
-                
+                Toggle("Display contribution count", isOn: $showContributionCount)
+                    .toggleStyle(.switch)
                 TextField("Update rate (minutes)", value: $pollingRate, format: .number)
             }
             Spacer()
