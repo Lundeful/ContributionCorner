@@ -12,44 +12,46 @@ struct SettingsView: View {
     @State private var showUsername: Bool
     @State private var username: String
     @State private var pollingRate: Double
-    
     @State private var hasError = false
     @State private var errorMessage = ""
     
-    init() {
+    let onDismiss: () -> Void
+    
+    init(onDismiss: @escaping () -> Void) {
         self.showContributionCount = UserDefaults.standard.bool(forKey: "showContributionCount")
         self.showUsername = UserDefaults.standard.bool(forKey: "showUsername")
         self.username =  UserDefaults.standard.string(forKey: "username") ?? ""
         self.pollingRate = UserDefaults.standard.double(forKey: "pollingRate")
+        self.onDismiss = onDismiss
     }
 
     var body: some View {
-        VStack {
+        GroupBox {
             Form {
+                Text("Settings")
+                    .font(.title)
                 TextField("GitHub username", text: $username)
                 Toggle("Display username", isOn: $showUsername)
                     .toggleStyle(.switch)
                 Toggle("Display contribution count", isOn: $showContributionCount)
                     .toggleStyle(.switch)
                 TextField("Update rate (minutes)", value: $pollingRate, format: .number)
-            }
-            Spacer()
-            HStack {
-                Button("Quit") {
-                    NSRunningApplication.current.terminate()
-                }
-                .buttonStyle(.bordered)
-                Spacer()
-                Button("Cancel", role: .cancel, action: closeWindow)
+                HStack {
+                    Button("Quit") {
+                        NSRunningApplication.current.terminate()
+                    }
                     .buttonStyle(.bordered)
-                Button("Save", action: save)
-                    .buttonStyle(.borderedProminent)
+                    Spacer()
+                    Button("Cancel", role: .cancel, action: onDismiss)
+                        .buttonStyle(.bordered)
+                    Button("Save", action: save)
+                        .buttonStyle(.borderedProminent)
+                }
             }
-        }
-        .frame(width: 400, height: 200)
-        .padding()
-        .alert("Invalid form", isPresented: $hasError) { } message: {
-            Text(errorMessage)
+            .formStyle(.grouped)
+            .alert("Invalid form", isPresented: $hasError) { } message: {
+                Text(errorMessage)
+            }
         }
     }
 
@@ -72,17 +74,13 @@ struct SettingsView: View {
         UserDefaults.standard.set(showUsername, forKey: "showUsername")
         UserDefaults.standard.set(trimmedUsername, forKey: "username")
         UserDefaults.standard.set(pollingRate, forKey: "pollingRate")
-        closeWindow()
-    }
-    
-    func closeWindow() {
-        NSApplication.shared.keyWindow?.close()
+        onDismiss()
     }
 }
 
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        SettingsView(onDismiss: {})
     }
 }

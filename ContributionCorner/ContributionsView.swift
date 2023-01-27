@@ -18,6 +18,7 @@ struct ContributionsView: View {
     @State private var contributions: [Date] = []
     @State private var isLoading = true
     @State private var errorMessage = ""
+    @State private var showingSettings = false
 
     private let githubParser = GithubParser()
 
@@ -46,13 +47,7 @@ struct ContributionsView: View {
     
     var settingsButton: some View {
         Button {
-            if #available(macOS 13.0, *) {
-                NSApp.sendAction(Selector(("showSettingsWindow:")), to: nil, from: nil)
-            }
-            else {
-                NSApp.sendAction(Selector(("showPreferencesWindow:")), to: nil, from: nil)
-            }
-            NSApp.activate(ignoringOtherApps: true)
+            showingSettings.toggle()
         } label: {
             Image(systemName: "gear")
         }
@@ -73,22 +68,22 @@ struct ContributionsView: View {
     }
 
     var body: some View {
-        VStack {
+        VStack(alignment: .center) {
             toolbar
+            if showingSettings {
+                SettingsView(onDismiss: { showingSettings = false })
+            }
+
             if username.isEmpty {
                 Spacer()
                 HStack(alignment: .center) {
                     Spacer()
-                    Text("Enter your GitHub username in settings to get started")
+                    Text("Enter your GitHub username in the settings to get started")
                     Spacer()
                 }
                 Spacer()
             } else if isLoading {
-                Spacer()
-                HStack(alignment: .center) {
-                    ProgressView()
-                }
-                Spacer()
+              ProgressView()
             } else {
                 AxisContribution(constant: .init(), source: contributions)
             }
@@ -102,7 +97,7 @@ struct ContributionsView: View {
                 }
             }
         }
-        .frame(width: 820, height: 200)
+        .frame(width: 820)
         .padding()
         .onAppear(perform: instantiateTimer)
         .task {
@@ -116,7 +111,7 @@ struct ContributionsView: View {
     }
 
     func instantiateTimer() {
-        self.timer = Timer.publish(every: max(60 * pollingRate, 60 * 15), on: .main, in: .common)
+        self.timer = Timer.publish(every: max(60 * pollingRate, 60), on: .main, in: .common)
         self.connectedTimer = self.timer.connect()
         return
     }
@@ -146,6 +141,7 @@ struct ContributionsView: View {
                 errorMessage = error.localizedDescription
                 print(error.localizedDescription)
             }
+
             withAnimation {
                 isLoading = false
             }
