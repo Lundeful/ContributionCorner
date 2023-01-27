@@ -60,6 +60,7 @@ struct ContributionsView: View {
             usernameView
             HStack {
                 Text(showContributionsCount ? "\(contributions.count) contributions" : "")
+                    .animation(nil)
                 Spacer()
                 refreshButton
                 settingsButton
@@ -75,15 +76,11 @@ struct ContributionsView: View {
             }
 
             if username.isEmpty {
-                Spacer()
-                HStack(alignment: .center) {
-                    Spacer()
-                    Text("Enter your GitHub username in the settings to get started")
-                    Spacer()
-                }
-                Spacer()
+                Text("Enter your GitHub username in the settings to get started")
+                    .padding(.vertical, 50)
             } else if isLoading {
               ProgressView()
+                    .padding(.vertical, 50)
             } else {
                 AxisContribution(constant: .init(), source: contributions)
             }
@@ -128,9 +125,7 @@ struct ContributionsView: View {
     }
 
     func getContributions() async {
-        withAnimation {
-            isLoading = true
-        }
+        isLoading = true
 
         await githubParser.getLastYearsContributionsAsDates(for: username) { result in
             switch result {
@@ -142,9 +137,7 @@ struct ContributionsView: View {
                 print(error.localizedDescription)
             }
 
-            withAnimation {
-                isLoading = false
-            }
+            isLoading = false
         }
     }
 }
