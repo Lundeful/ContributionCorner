@@ -88,6 +88,7 @@ struct ContributionsView: View {
             }
             else {
                 AxisContribution(constant: .init(), source: contributions)
+                    .frame(height: 150)
             }
             if !errorMessage.isEmpty {
                 HStack {
