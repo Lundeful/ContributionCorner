@@ -47,7 +47,9 @@ struct ContributionsView: View {
     
     var settingsButton: some View {
         Button {
-            showingSettings.toggle()
+            withAnimation {
+                showingSettings.toggle()
+            }
         } label: {
             Image(systemName: "gear")
         }
@@ -71,18 +73,22 @@ struct ContributionsView: View {
     var body: some View {
         VStack(alignment: .center) {
             toolbar
-            if showingSettings {
-                SettingsView(onDismiss: { showingSettings = false })
-            }
+                SettingsView{
+                    withAnimation {
+                        showingSettings = false
+                    }
+                }
+                .frame(maxHeight: showingSettings ? .infinity : 0)
 
             if username.isEmpty {
                 Text("Enter your GitHub username in the settings to get started")
-                    .padding(.vertical, 50)
+                    .frame(height: 150)
             } else if isLoading {
               ProgressView()
-                    .padding(.vertical, 50)
+                    .frame(height: 150)
             } else {
                 AxisContribution(constant: .init(), source: contributions)
+                    .frame(height: 150)
             }
             if !errorMessage.isEmpty {
                 HStack {
@@ -125,7 +131,9 @@ struct ContributionsView: View {
     }
 
     func getContributions() async {
-        isLoading = true
+        withAnimation {
+            isLoading = true
+        }
 
         await githubParser.getLastYearsContributionsAsDates(for: username) { result in
             switch result {
@@ -136,9 +144,10 @@ struct ContributionsView: View {
                 errorMessage = error.localizedDescription
                 print(error.localizedDescription)
             }
-
-            isLoading = false
             restartTimer()
+            withAnimation {
+                isLoading = false
+            }
         }
     }
 }

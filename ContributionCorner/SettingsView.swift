@@ -26,7 +26,6 @@ struct SettingsView: View {
     }
 
     var body: some View {
-        GroupBox {
             Form {
                 Text("Settings")
                     .font(.title)
@@ -49,10 +48,11 @@ struct SettingsView: View {
                 }
             }
             .formStyle(.grouped)
+            .scrollIndicators(.hidden)
             .alert("Invalid form", isPresented: $hasError) { } message: {
                 Text(errorMessage)
             }
-        }
+        
     }
 
     func save() {
