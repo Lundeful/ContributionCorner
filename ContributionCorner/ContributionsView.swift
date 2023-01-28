@@ -138,6 +138,7 @@ struct ContributionsView: View {
             }
 
             isLoading = false
+            restartTimer()
         }
     }
 }
