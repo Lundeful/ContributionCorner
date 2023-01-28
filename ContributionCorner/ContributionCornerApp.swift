@@ -16,12 +16,6 @@ struct ContributionCornerApp: App {
         Settings {
             Text("Settings are located by pressing the gear icon inside the app")
         }
-//        MenuBarExtra {
-//            ContentView()
-//        } label: {
-//            Label("Contribution Corner", systemImage: "square.grid.3x3.fill")
-//        }
-//        .menuBarExtraStyle(.window)
     }
 }
 

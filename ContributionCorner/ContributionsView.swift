@@ -62,7 +62,6 @@ struct ContributionsView: View {
             usernameView
             HStack {
                 Text(showContributionsCount ? "\(contributions.count) contributions" : "")
-                    .animation(nil)
                 Spacer()
                 refreshButton
                 settingsButton
@@ -84,11 +83,11 @@ struct ContributionsView: View {
                 Text("Enter your GitHub username in the settings to get started")
                     .frame(height: 150)
             } else if isLoading {
-              ProgressView()
+                ProgressView()
                     .frame(height: 150)
-            } else {
+            }
+            else {
                 AxisContribution(constant: .init(), source: contributions)
-                    .frame(height: 150)
             }
             if !errorMessage.isEmpty {
                 HStack {
@@ -102,7 +101,6 @@ struct ContributionsView: View {
         }
         .frame(width: 820)
         .padding()
-        .onAppear(perform: instantiateTimer)
         .task {
             await getContributions()
         }
@@ -131,6 +129,7 @@ struct ContributionsView: View {
     }
 
     func getContributions() async {
+        restartTimer()
         withAnimation {
             isLoading = true
         }
@@ -144,7 +143,6 @@ struct ContributionsView: View {
                 errorMessage = error.localizedDescription
                 print(error.localizedDescription)
             }
-            restartTimer()
             withAnimation {
                 isLoading = false
             }

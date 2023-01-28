@@ -41,7 +41,7 @@ struct SettingsView: View {
                     }
                     .buttonStyle(.bordered)
                     Spacer()
-                    Button("Cancel", role: .cancel, action: onDismiss)
+                    Button("Cancel", role: .cancel, action: cancel)
                         .buttonStyle(.bordered)
                     Button("Save", action: save)
                         .buttonStyle(.borderedProminent)
@@ -53,6 +53,14 @@ struct SettingsView: View {
                 Text(errorMessage)
             }
         
+    }
+
+    func cancel() {
+        self.showContributionCount = UserDefaults.standard.bool(forKey: "showContributionCount")
+        self.showUsername = UserDefaults.standard.bool(forKey: "showUsername")
+        self.username =  UserDefaults.standard.string(forKey: "username") ?? ""
+        self.pollingRate = UserDefaults.standard.double(forKey: "pollingRate")
+        onDismiss()
     }
 
     func save() {
@@ -77,7 +85,6 @@ struct SettingsView: View {
         onDismiss()
     }
 }
-
 
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
