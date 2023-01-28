@@ -6,15 +6,31 @@
 //
 
 import SwiftUI
+import FluidMenuBarExtra
 
 @main
 struct ContributionCornerApp: App {
+    @NSApplicationDelegateAdaptor private var appDelegate: AppDelegate
+
     var body: some Scene {
-        MenuBarExtra {
-            ContentView()
-        } label: {
-            Label("Contribution Corner", systemImage: "square.grid.3x3.fill")
+        Settings {
+            Text("Settings are located by pressing the gear icon inside the app")
         }
-        .menuBarExtraStyle(.window)
+//        MenuBarExtra {
+//            ContentView()
+//        } label: {
+//            Label("Contribution Corner", systemImage: "square.grid.3x3.fill")
+//        }
+//        .menuBarExtraStyle(.window)
+    }
+}
+
+class AppDelegate: NSObject, NSApplicationDelegate {
+    private var menuBarExtra: FluidMenuBarExtra?
+
+    func applicationDidFinishLaunching(_ notification: Notification) {
+        self.menuBarExtra = FluidMenuBarExtra(title: "Contribution Corner", systemImage: "square.grid.3x3.fill") {
+            ContentView()
+        }
     }
 }
