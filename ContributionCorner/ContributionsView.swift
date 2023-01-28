@@ -32,7 +32,7 @@ struct ContributionsView: View {
             Spacer()
         }
     }
-    
+
     var refreshButton: some View {
         Button {
             Task {
@@ -44,7 +44,7 @@ struct ContributionsView: View {
         .buttonStyle(.plain)
         .focusable(false) // Removes focus ring, TODO: find alternative solution
     }
-    
+
     var settingsButton: some View {
         Button {
             withAnimation {
@@ -56,7 +56,7 @@ struct ContributionsView: View {
         .buttonStyle(.plain)
         .focusable(false) // Removes focus ring, TODO: find alternative solution
     }
-    
+
     var toolbar: some View {
         ZStack {
             usernameView
