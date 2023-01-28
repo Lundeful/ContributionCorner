@@ -5,10 +5,10 @@ It is very rudimentary still with *just* enough features that I'm happy using it
 For reporting bugs or feature requests just open an issue or contact me via other channels (link in profile).
 
 ## How to use
-1. Download the .dmg (or build it yourself with Xcode)
-2. Drag it into your Applications folder
+1. Download the .app file from the right hand side under 'Releases' or archive it yourself with Xcode after cloning the repository.
+2. Drag Contribution Corner.app into your Applications folder
 4. Run the app
-5. Click the icon in the menu bar
+5. Click the 3x3 square grid icon in the menu bar
 6. Click the gear icon to enter your github username
 7. Click save
 8. Enjoy your pretty contribution graph
