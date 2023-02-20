@@ -14,9 +14,9 @@ struct SettingsView: View {
     @State private var pollingRate: Double
     @State private var hasError = false
     @State private var errorMessage = ""
-    
+
     let onDismiss: () -> Void
-    
+
     init(onDismiss: @escaping () -> Void) {
         self.showContributionCount = UserDefaults.standard.bool(forKey: "showContributionCount")
         self.showUsername = UserDefaults.standard.bool(forKey: "showUsername")
@@ -36,7 +36,7 @@ struct SettingsView: View {
                     .toggleStyle(.switch)
                 TextField("Update rate (minutes)", value: $pollingRate, format: .number)
                 HStack {
-                    Button("Quit") {
+                    Button("Quit app") {
                         NSRunningApplication.current.terminate()
                     }
                     .buttonStyle(.bordered)
@@ -47,12 +47,9 @@ struct SettingsView: View {
                         .buttonStyle(.borderedProminent)
                 }
             }
-            .formStyle(.grouped)
-            .scrollIndicators(.hidden)
             .alert("Invalid form", isPresented: $hasError) { } message: {
                 Text(errorMessage)
             }
-        
     }
 
     func cancel() {

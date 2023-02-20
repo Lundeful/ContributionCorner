@@ -13,7 +13,7 @@ struct ContributionsView: View {
     @AppStorage("username") private var username: String = ""
     @AppStorage("showContributionCount") private var showContributionsCount: Bool = true
     @AppStorage("showUsername") private var showUsername: Bool = true
-    @AppStorage("pollingRate") private var pollingRate: Double = 15
+    @AppStorage("pollingRate") private var pollingRate: Double = 60
 
     @State private var contributions: [Date] = []
     @State private var isLoading = true
@@ -47,9 +47,7 @@ struct ContributionsView: View {
 
     var settingsButton: some View {
         Button {
-            withAnimation {
-                showingSettings.toggle()
-            }
+            showingSettings.toggle()
         } label: {
             Image(systemName: "gear")
         }
@@ -62,6 +60,7 @@ struct ContributionsView: View {
             usernameView
             HStack {
                 Text(showContributionsCount ? "\(contributions.count) contributions" : "")
+                    .redacted(reason: isLoading ? .placeholder : [])
                 Spacer()
                 refreshButton
                 settingsButton
@@ -72,12 +71,9 @@ struct ContributionsView: View {
     var body: some View {
         VStack(alignment: .center) {
             toolbar
-                SettingsView{
-                    withAnimation {
-                        showingSettings = false
-                    }
-                }
-                .frame(maxHeight: showingSettings ? .infinity : 0)
+            if showingSettings {
+                SettingsView(onDismiss: { showingSettings = false })
+            }
 
             if username.isEmpty {
                 Text("Enter your GitHub username in the settings to get started")

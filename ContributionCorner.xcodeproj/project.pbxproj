@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8393F21429849F2900F9CCBA /* FluidMenuBarExtra in Frameworks */ = {isa = PBXBuildFile; productRef = 8393F21329849F2900F9CCBA /* FluidMenuBarExtra */; };
 		83CA27082976CCD400CF2B15 /* ContributionCornerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27072976CCD400CF2B15 /* ContributionCornerApp.swift */; };
 		83CA270A2976CCD400CF2B15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27092976CCD400CF2B15 /* ContentView.swift */; };
 		83CA270C2976CCD500CF2B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CA270B2976CCD500CF2B15 /* Assets.xcassets */; };
@@ -39,7 +38,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CA27182976CDD300CF2B15 /* AxisContribution in Frameworks */,
-				8393F21429849F2900F9CCBA /* FluidMenuBarExtra in Frameworks */,
 				83CA271B2976CE5C00CF2B15 /* SwiftSoup in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,7 +104,6 @@
 			packageProductDependencies = (
 				83CA27172976CDD300CF2B15 /* AxisContribution */,
 				83CA271A2976CE5C00CF2B15 /* SwiftSoup */,
-				8393F21329849F2900F9CCBA /* FluidMenuBarExtra */,
 			);
 			productName = ContributionCorner;
 			productReference = 83CA27042976CCD400CF2B15 /* ContributionCorner.app */;
@@ -139,7 +136,6 @@
 			packageReferences = (
 				83CA27162976CDD300CF2B15 /* XCRemoteSwiftPackageReference "AxisContribution" */,
 				83CA27192976CE5C00CF2B15 /* XCRemoteSwiftPackageReference "SwiftSoup" */,
-				8393F21229849F2900F9CCBA /* XCRemoteSwiftPackageReference "fluid-menu-bar-extra" */,
 			);
 			productRefGroup = 83CA27052976CCD400CF2B15 /* Products */;
 			projectDirPath = "";
@@ -229,7 +225,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -283,7 +279,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 13.1;
+				MACOSX_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = macosx;
@@ -376,14 +372,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		8393F21229849F2900F9CCBA /* XCRemoteSwiftPackageReference "fluid-menu-bar-extra" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/lfroms/fluid-menu-bar-extra";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		83CA27162976CDD300CF2B15 /* XCRemoteSwiftPackageReference "AxisContribution" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/jasudev/AxisContribution.git";
@@ -403,11 +391,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8393F21329849F2900F9CCBA /* FluidMenuBarExtra */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 8393F21229849F2900F9CCBA /* XCRemoteSwiftPackageReference "fluid-menu-bar-extra" */;
-			productName = FluidMenuBarExtra;
-		};
 		83CA27172976CDD300CF2B15 /* AxisContribution */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 83CA27162976CDD300CF2B15 /* XCRemoteSwiftPackageReference "AxisContribution" */;
