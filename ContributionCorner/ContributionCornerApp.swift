@@ -58,6 +58,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func closePopover(sender: AnyObject) {
-
+        popover.performClose(sender)
     }
 }
