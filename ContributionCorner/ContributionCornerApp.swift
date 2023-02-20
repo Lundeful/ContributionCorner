@@ -14,7 +14,7 @@ struct ContributionCornerApp: App {
     var body: some Scene {
         Settings {
             EmptyView()
-//            SettingsView()
+//            SettingsView() // TODO: Move settings view into MacOS Settings view
         }
     }
 }
