@@ -19,11 +19,11 @@ For reporting bugs or feature requests just open an issue or contact me via othe
 
 ![SCR-20230128-2qo](https://user-images.githubusercontent.com/31478985/215233723-9bd58d34-6fbc-4275-81f5-54a731ed238d.png)
 
+## Supported versions
+This app supports MacOS version 12.0 (Monterey) and up.
 
 ## Packages used
 * [SwiftSoup ](https://github.com/scinfu/SwiftSoup)
   - A fantastic parser. Used to parse the GitHub HTML to get the contributions data.
 * [AxisContribution](https://github.com/jasudev/AxisContribution)
   - Wonderful package by jasudev for displaying the data in a GitHub contribution graph style
-* [FluidMenuBarExtra](https://github.com/lfroms/fluid-menu-bar-extra)
-  - Great package by lfroms used to get smooth animations when toggling the settings view
