@@ -108,6 +108,11 @@ struct ContributionsView: View {
                             .foregroundColor(foregroundColor)
                             .frame(width: rowSize, height: rowSize)
                             .help("\(data.count.formatted()) contribution\(data.count == 1 ? "" : "s") on \(data.date.formatted(date: .abbreviated, time: .omitted))")
+                    } else {
+                        // This will be part of the less/more boxes beneath the graph
+                        RoundedRectangle(cornerRadius: 2)
+                            .foregroundColor(foregroundColor)
+                            .frame(width: rowSize, height: rowSize)
                     }
                 }
                 .frame(height: 150)
