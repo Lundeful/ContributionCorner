@@ -10,6 +10,8 @@ import AxisContribution
 import Combine
 
 struct ContributionsView: View {
+    @Environment(\.colorScheme) var colorScheme
+
     @AppStorage("username") private var username: String = ""
     @AppStorage("showContributionCount") private var showContributionsCount: Bool = true
     @AppStorage("showUsername") private var showUsername: Bool = true
@@ -20,10 +22,16 @@ struct ContributionsView: View {
     @State private var errorMessage = ""
     @State private var showingSettings = false
 
-    private let githubParser = GithubParser()
-
     @State var timer: Timer.TimerPublisher = Timer.publish(every: 3, on: .main, in: .common)
     @State var connectedTimer: Cancellable? = nil
+
+    private let githubParser = GithubParser()
+
+    // Theming of contributions
+    let darkBackgroundColor = Color(red: 23/255, green: 27/255, blue: 33/255)
+    let lightBackgroundColor = Color(red: 240/255, green: 240/255, blue: 240/255)
+    let foregroundColor = Color(red: 108/255, green: 209/255, blue: 100/255)
+    let rowSize: CGFloat = 11
 
     var usernameView: some View {
         HStack {
@@ -83,8 +91,16 @@ struct ContributionsView: View {
                     .frame(height: 150)
             }
             else {
-                AxisContribution(constant: .init(), source: contributions)
-                    .frame(height: 150)
+                AxisContribution(constant: .init(), source: contributions) { indexSet, data in
+                    RoundedRectangle(cornerRadius: 2)
+                      .foregroundColor(colorScheme == .dark ? darkBackgroundColor : lightBackgroundColor)
+                      .frame(width: rowSize, height: rowSize)
+                } foreground: { indexSet, data in
+                    RoundedRectangle(cornerRadius: 2)
+                        .foregroundColor(foregroundColor)
+                      .frame(width: rowSize, height: rowSize)
+                }
+                .frame(height: 150)
             }
             if !errorMessage.isEmpty {
                 HStack {
