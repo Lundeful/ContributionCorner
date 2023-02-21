@@ -98,7 +98,8 @@ struct ContributionsView: View {
                 } foreground: { indexSet, data in
                     RoundedRectangle(cornerRadius: 2)
                         .foregroundColor(foregroundColor)
-                      .frame(width: rowSize, height: rowSize)
+                        .frame(width: rowSize, height: rowSize)
+                        .help("\(data?.count.formatted() ?? "Uknown amount of") contributions on \(data?.date.formatted(date: .abbreviated, time: .omitted) ?? "this day")")
                 }
                 .frame(height: 150)
             }
@@ -114,9 +115,7 @@ struct ContributionsView: View {
         }
         .frame(width: 820)
         .padding()
-        .task {
-            await getContributions()
-        }
+        .task { await getContributions() }
         .onChange(of: username) { _ in Task { await getContributions() }}
         .onChange(of: pollingRate) { _ in restartTimer() }
         .onReceive(timer) { _ in
