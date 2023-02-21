@@ -36,7 +36,14 @@ struct ContributionsView: View {
     var usernameView: some View {
         HStack {
             Spacer()
-            Text(showUsername ? username : "")
+            if showUsername {
+                Text(username)
+                Link(destination: URL(string: "https://github.com/\(username)")!) {
+                    Image(systemName: "link")
+                }
+                .focusable(false)
+                .foregroundColor(.primary)
+            }
             Spacer()
         }
     }
@@ -67,7 +74,7 @@ struct ContributionsView: View {
         ZStack {
             usernameView
             HStack {
-                Text(showContributionsCount ? "\(contributions.count) contributions" : "")
+                Text(showContributionsCount ? "\(contributions.count) contribution\(contributions.count == 1 ? "" : "s")" : "")
                     .redacted(reason: isLoading ? .placeholder : [])
                 Spacer()
                 refreshButton
@@ -96,10 +103,12 @@ struct ContributionsView: View {
                       .foregroundColor(colorScheme == .dark ? darkBackgroundColor : lightBackgroundColor)
                       .frame(width: rowSize, height: rowSize)
                 } foreground: { indexSet, data in
-                    RoundedRectangle(cornerRadius: 2)
-                        .foregroundColor(foregroundColor)
-                        .frame(width: rowSize, height: rowSize)
-                        .help("\(data?.count.formatted() ?? "Uknown amount of") contributions on \(data?.date.formatted(date: .abbreviated, time: .omitted) ?? "this day")")
+                    if let data {
+                        RoundedRectangle(cornerRadius: 2)
+                            .foregroundColor(foregroundColor)
+                            .frame(width: rowSize, height: rowSize)
+                            .help("\(data.count.formatted()) contribution\(data.count == 1 ? "" : "s") on \(data.date.formatted(date: .abbreviated, time: .omitted))")
+                    }
                 }
                 .frame(height: 150)
             }
