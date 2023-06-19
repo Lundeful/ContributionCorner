@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		83CA27082976CCD400CF2B15 /* ContributionCornerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27072976CCD400CF2B15 /* ContributionCornerApp.swift */; };
-		83CA270A2976CCD400CF2B15 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27092976CCD400CF2B15 /* ContentView.swift */; };
 		83CA270C2976CCD500CF2B15 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CA270B2976CCD500CF2B15 /* Assets.xcassets */; };
 		83CA270F2976CCD500CF2B15 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83CA270E2976CCD500CF2B15 /* Preview Assets.xcassets */; };
 		83CA27182976CDD300CF2B15 /* AxisContribution in Frameworks */ = {isa = PBXBuildFile; productRef = 83CA27172976CDD300CF2B15 /* AxisContribution */; };
@@ -17,12 +16,14 @@
 		83CA27212976CEEC00CF2B15 /* Date-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */; };
 		83CA27232976E9B100CF2B15 /* ContributionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA27222976E9B100CF2B15 /* ContributionsView.swift */; };
 		83CA2725297705FF00CF2B15 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83CA2724297705FF00CF2B15 /* SettingsView.swift */; };
+		83F0C1A22A40904000FDE446 /* ContributionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0C1A12A40904000FDE446 /* ContributionsViewModel.swift */; };
+		83F0C1A42A40914E00FDE446 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F0C1A32A40914E00FDE446 /* Theme.swift */; };
+		83F666AE2A40984F008225DB /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83F666AD2A40984F008225DB /* Toolbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		83CA27042976CCD400CF2B15 /* ContributionCorner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ContributionCorner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83CA27072976CCD400CF2B15 /* ContributionCornerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionCornerApp.swift; sourceTree = "<group>"; };
-		83CA27092976CCD400CF2B15 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		83CA270B2976CCD500CF2B15 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		83CA270E2976CCD500CF2B15 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		83CA27102976CCD500CF2B15 /* ContributionCorner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ContributionCorner.entitlements; sourceTree = "<group>"; };
@@ -30,6 +31,9 @@
 		83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date-Extensions.swift"; sourceTree = "<group>"; };
 		83CA27222976E9B100CF2B15 /* ContributionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsView.swift; sourceTree = "<group>"; };
 		83CA2724297705FF00CF2B15 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		83F0C1A12A40904000FDE446 /* ContributionsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContributionsViewModel.swift; sourceTree = "<group>"; };
+		83F0C1A32A40914E00FDE446 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		83F666AD2A40984F008225DB /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,12 +68,14 @@
 		83CA27062976CCD400CF2B15 /* ContributionCorner */ = {
 			isa = PBXGroup;
 			children = (
-				83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */,
 				83CA27072976CCD400CF2B15 /* ContributionCornerApp.swift */,
-				83CA27092976CCD400CF2B15 /* ContentView.swift */,
 				83CA27222976E9B100CF2B15 /* ContributionsView.swift */,
+				83F0C1A12A40904000FDE446 /* ContributionsViewModel.swift */,
+				83F666AD2A40984F008225DB /* Toolbar.swift */,
 				83CA2724297705FF00CF2B15 /* SettingsView.swift */,
+				83CA27202976CEEC00CF2B15 /* Date-Extensions.swift */,
 				83CA271C2976CE7300CF2B15 /* GithubParser.swift */,
+				83F0C1A32A40914E00FDE446 /* Theme.swift */,
 				83CA270B2976CCD500CF2B15 /* Assets.xcassets */,
 				83CA27102976CCD500CF2B15 /* ContributionCorner.entitlements */,
 				83CA270D2976CCD500CF2B15 /* Preview Content */,
@@ -164,9 +170,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				83CA2725297705FF00CF2B15 /* SettingsView.swift in Sources */,
+				83F0C1A42A40914E00FDE446 /* Theme.swift in Sources */,
+				83F0C1A22A40904000FDE446 /* ContributionsViewModel.swift in Sources */,
+				83F666AE2A40984F008225DB /* Toolbar.swift in Sources */,
 				83CA27212976CEEC00CF2B15 /* Date-Extensions.swift in Sources */,
 				83CA271D2976CE7300CF2B15 /* GithubParser.swift in Sources */,
-				83CA270A2976CCD400CF2B15 /* ContentView.swift in Sources */,
 				83CA27232976E9B100CF2B15 /* ContributionsView.swift in Sources */,
 				83CA27082976CCD400CF2B15 /* ContributionCornerApp.swift in Sources */,
 			);
@@ -311,7 +319,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.christofferlund.ContributionCorner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -342,7 +350,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 1.2;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = com.christofferlund.ContributionCorner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

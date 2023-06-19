@@ -12,10 +12,10 @@ enum NetworkError: Error {
     case badURL
 }
 
-class GithubParser {
-    let baseUrl = "http://github.com/"
+struct GithubParser {
+    static let baseUrl = "http://github.com/"
 
-    func getLastYearsContributionsAsDates(for user: String, completionHandler: @escaping (Result<[Date], NetworkError>) -> Void) async {
+    static func getLastYearsContributionsAsDates(for user: String, completionHandler: @escaping (Result<[Date], NetworkError>) -> Void) async {
         guard let url = URL(string: baseUrl + user) else {
             print("Invalid URL")
             completionHandler(.failure(.badURL))
@@ -41,7 +41,7 @@ class GithubParser {
         }
     }
     
-    func parseDate(date: String) -> Date? {
+    static func parseDate(date: String) -> Date? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
         return dateFormatter.date(from: date)

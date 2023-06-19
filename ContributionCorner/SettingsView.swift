@@ -9,34 +9,18 @@ import SwiftUI
 import ServiceManagement
 
 struct SettingsView: View {
-    @State private var showContributionCount: Bool
-    @State private var showUsername: Bool
-    @State private var username: String
-    @State private var pollingRate: Double
+    @AppStorage("username") var username = ""
+    @State private var launchOnStartup = false
     @State private var hasError = false
-    @State private var launchOnStartup: Bool = false
     @State private var errorMessage = ""
 
     let onDismiss: () -> Void
-
-    init(onDismiss: @escaping () -> Void) {
-        self.showContributionCount = UserDefaults.standard.bool(forKey: "showContributionCount")
-        self.showUsername = UserDefaults.standard.bool(forKey: "showUsername")
-        self.username =  UserDefaults.standard.string(forKey: "username") ?? ""
-        self.pollingRate = UserDefaults.standard.double(forKey: "pollingRate")
-        self.onDismiss = onDismiss
-    }
 
     var body: some View {
             Form {
                 Text("Settings")
                     .font(.title)
                 TextField("GitHub username", text: $username)
-                TextField("Update rate (minutes)", value: $pollingRate, format: .number)
-                Toggle("Display username", isOn: $showUsername)
-                    .toggleStyle(.switch)
-                Toggle("Display contribution count", isOn: $showContributionCount)
-                    .toggleStyle(.switch)
 
                 if #available(macOS 13, *) {
                     Toggle("Launch on startup", isOn: $launchOnStartup)
@@ -76,26 +60,13 @@ struct SettingsView: View {
 
         let trimmedUsername = username.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmedUsername.isEmpty else {
-            errorMessage = "Username cannot be empty"
-            hasError = true
+            setError(withMessage: "Username cannot be empty")
             return
         }
-
-        guard pollingRate >= 5 else {
-            errorMessage = "Polling rate must be 5 minutes or higher to prevent spam"
-            hasError = true
-            pollingRate = 5
-            return
-        }
-
-        UserDefaults.standard.set(showContributionCount, forKey: "showContributionCount")
-        UserDefaults.standard.set(showUsername, forKey: "showUsername")
-        UserDefaults.standard.set(trimmedUsername, forKey: "username")
-        UserDefaults.standard.set(pollingRate, forKey: "pollingRate")
-
-        updateLaunchAtStartup()
 
         if errorMessage.isEmpty && !hasError {
+            UserDefaults.standard.set(trimmedUsername, forKey: "username")
+            updateLaunchAtStartup()
             onDismiss()
         }
     }
