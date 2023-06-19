@@ -22,8 +22,8 @@ final class ContributionsViewModel: ObservableObject {
     func getContributions() async {
         guard !self.username.isEmpty else {
             self.contributions = []
-            self.isInitialLoad = false
             self.isFetching = false
+            self.isInitialLoad = false
             return
         }
 

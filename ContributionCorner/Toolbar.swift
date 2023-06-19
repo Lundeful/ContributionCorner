@@ -11,6 +11,11 @@ struct Toolbar: View {
     @ObservedObject var viewModel: ContributionsViewModel
     @State private var showingSettings = false
 
+    var contributionsCount: some View {
+        Text("\(viewModel.contributions.count) contribution\(viewModel.contributions.count == 1 ? "" : "s")")
+            .redacted(reason: viewModel.isInitialLoad ? .placeholder : [])
+    }
+
     var usernameView: some View {
         HStack {
             Spacer()
@@ -53,8 +58,7 @@ struct Toolbar: View {
             ZStack {
                 usernameView
                 HStack {
-                    Text("\(viewModel.contributions.count) contribution\(viewModel.contributions.count == 1 ? "" : "s")")
-                        .redacted(reason: viewModel.isInitialLoad ? .placeholder : [])
+                    contributionsCount
                     Spacer()
                     refreshButton
                     settingsButton
