@@ -15,6 +15,10 @@ For reporting bugs or feature requests just open an issue or contact me via othe
 7. Click save
 8. Enjoy your pretty contribution graph
 
+## Video/GIF
+https://github.com/Lundeful/ContributionCorner/assets/31478985/34625b03-1ef2-49e2-8b48-e37f138c3a94
+
+
 ## Screenshots
 ![ContributionCornerV1 3-screenshot-1](https://github.com/Lundeful/ContributionCorner/assets/31478985/80209b64-812d-47be-a1ae-d8baa65b6fe4)
 ![ContributionCornerV1 3-screenshot-2](https://github.com/Lundeful/ContributionCorner/assets/31478985/91f7f3ee-bdd8-4639-9137-48f82772dcf0)
