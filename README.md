@@ -15,12 +15,13 @@ For reporting bugs or feature requests just open an issue or contact me via othe
 
 ## Screenshots
 
-![SCR-20230128-2qg](https://user-images.githubusercontent.com/31478985/215233711-30df2bbb-bae4-43ac-87c2-abfa919cd67a.png)
+![SCR-20230128-2qg](https://user-images.githubusercontent.com/31478985/220460863-3f77f9e0-c2bc-44a8-b225-bcebce1e94ef.png)
 
-![SCR-20230128-2qo](https://user-images.githubusercontent.com/31478985/215233723-9bd58d34-6fbc-4275-81f5-54a731ed238d.png)
+![SCR-20230128-2qo](https://user-images.githubusercontent.com/31478985/220460875-c42f5a3d-af29-48ad-81ea-5e9e0e5a643c.png)
 
 ## Supported versions
 This app supports MacOS version 12.0 (Monterey) and up.
+Launch on startup is supported only from version 13.0 and up.
 
 ## Packages used
 * [SwiftSoup ](https://github.com/scinfu/SwiftSoup)
