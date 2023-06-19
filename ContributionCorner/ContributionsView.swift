@@ -7,11 +7,9 @@
 
 import SwiftUI
 import AxisContribution
-import Combine
 
 struct ContributionsView: View {
     @Environment(\.colorScheme) var colorScheme
-
     @ObservedObject var viewModel: ContributionsViewModel
 
     var body: some View {
