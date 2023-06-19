@@ -2,6 +2,8 @@
 This is a very simple MacOS menu bar that scrapes a github profile and then uses [AxisContribution]() to display the data.
 It is very rudimentary still with *just* enough features that I'm happy using it.
 
+It works by fetching data every time you click on the icon and display the graph, but you also have a reload button that can trigger a manual refresh.
+
 For reporting bugs or feature requests just open an issue or contact me via other channels (link in profile).
 
 ## How to use
@@ -14,10 +16,9 @@ For reporting bugs or feature requests just open an issue or contact me via othe
 8. Enjoy your pretty contribution graph
 
 ## Screenshots
+![ContributionCornerV1 3-screenshot-1](https://github.com/Lundeful/ContributionCorner/assets/31478985/80209b64-812d-47be-a1ae-d8baa65b6fe4)
+![ContributionCornerV1 3-screenshot-2](https://github.com/Lundeful/ContributionCorner/assets/31478985/91f7f3ee-bdd8-4639-9137-48f82772dcf0)
 
-![SCR-20230128-2qg](https://user-images.githubusercontent.com/31478985/220460863-3f77f9e0-c2bc-44a8-b225-bcebce1e94ef.png)
-
-![SCR-20230128-2qo](https://user-images.githubusercontent.com/31478985/220460875-c42f5a3d-af29-48ad-81ea-5e9e0e5a643c.png)
 
 ## Supported versions
 This app supports MacOS version 12.0 (Monterey) and up.
