@@ -27,6 +27,8 @@ final class ContributionsViewModel: ObservableObject {
             return
         }
 
+        self.isFetching = true
+
         await GithubParser.getLastYearsContributionsAsDates(for: self.username) { result in
             DispatchQueue.main.async {
                 switch result {

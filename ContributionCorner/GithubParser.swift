@@ -10,6 +10,7 @@ import SwiftSoup
 
 enum NetworkError: Error {
     case badURL
+    case parseError
 }
 
 struct GithubParser {
@@ -25,10 +26,11 @@ struct GithubParser {
         do {
             let html = try String(contentsOf: url)
             let document = try SwiftSoup.parse(html)
-            let contributions = try document.select("svg.js-calendar-graph-svg rect.ContributionCalendar-day")
+            let contributions = try document.select("td.ContributionCalendar-day")
 
             let mappedContributions: [Date] = try contributions.flatMap { day in
-                let contributionCount = try Int(day.html().components(separatedBy: .whitespaces)[0]) ?? 0
+                let spanContent = try day.select("span.sr-only").html()
+                let contributionCount = Int(spanContent.split(separator: " ")[0]) ?? 0
                 if contributionCount == 0 { return [Date]() }
 
                 let date = try parseDate(date: day.attr("data-date"))!
@@ -37,6 +39,7 @@ struct GithubParser {
 
             completionHandler(.success(mappedContributions))
         } catch {
+            completionHandler(.failure(.parseError))
             print("Error while parsing")
         }
     }
