@@ -39,6 +39,7 @@ struct Toolbar: View {
         } label: {
             Image(systemName: "arrow.clockwise")
         }
+        .disabled(viewModel.isFetching)
         .buttonStyle(.plain)
         .focusable(false) // Removes focus ring, TODO: find alternative solution
     }
