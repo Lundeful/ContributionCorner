@@ -1,9 +1,3 @@
-//
-//  Date-Extensions.swift
-//  ContributionCorner
-//
-//  Created by Christoffer Lund on 17/01/2023.
-//
 
 import Foundation
 

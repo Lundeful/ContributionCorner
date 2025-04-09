@@ -1,22 +1,17 @@
-//
-//  ContributionsViewModel.swift
-//  ContributionCorner
-//
-//  Created by Christoffer Lund on 19/06/2023.
-//
 
 import SwiftUI
-
 @MainActor
 final class ContributionsViewModel: ObservableObject {
     @AppStorage("username") var username = ""
     @Published var contributions: [Date] = []
     @Published var isInitialLoad = true
-    @Published var isFetching = true
+    @Published var isFetching = false
     @Published var errorMessage = ""
 
-    init() {
-        Task { await getContributions() }
+    init(autoFetch: Bool = true) {
+        if autoFetch {
+            Task { await getContributions() }
+        }
     }
 
     func getContributions() async {
@@ -30,21 +25,21 @@ final class ContributionsViewModel: ObservableObject {
         self.isFetching = true
         self.errorMessage = ""
 
-        await GithubParser.getLastYearsContributionsAsDates(for: self.username) { result in
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let days):
-                    self.contributions = days
-                    print("Successfully fetched contributions")
-                case .failure(let error):
-                    self.contributions = []
-                    self.errorMessage = error.localizedDescription
-                    print(error.localizedDescription)
-                }
-
-                self.isFetching = false
-                self.isInitialLoad = false
-            }
+        do {
+            let result = try await GithubParser.getContributions(for: self.username)
+            self.contributions = result
+            print("Successfully fetched contributions")
+        } catch let error as NetworkError {
+            self.contributions = []
+            self.errorMessage = error.localizedDescription
+            print(error.localizedDescription)
+        } catch {
+            self.contributions = []
+            self.errorMessage = "An unknown error occurred"
+            print("Unknown error: \(error.localizedDescription)")
         }
+
+        self.isFetching = false
+        self.isInitialLoad = false
     }
 }

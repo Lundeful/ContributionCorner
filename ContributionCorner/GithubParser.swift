@@ -1,21 +1,33 @@
 import Foundation
 import SwiftSoup
 
-enum NetworkError: Error {
+enum NetworkError: Error, LocalizedError {
     case badURL
     case parseError
     case networkError(Error)
     case invalidResponse
+
+    var errorDescription: String? {
+        switch self {
+        case .badURL:
+            return "Invalid URL format"
+        case .parseError:
+            return "Failed to parse GitHub data"
+        case .networkError(let error):
+            return "Network error: \(error.localizedDescription)"
+        case .invalidResponse:
+            return "Invalid response from GitHub"
+        }
+    }
 }
 
-struct GithubParser {
+actor GithubParser {
     static let baseUrl = "https://github.com/%@?action=show&controller=profiles&tab=contributions&user_id=%@"
 
-    static func getLastYearsContributionsAsDates(for user: String, completionHandler: @escaping (Result<[Date], NetworkError>) -> Void) async {
+    static func getContributions(for user: String) async throws -> [Date] {
         let urlString = String(format: baseUrl, user.lowercased(), user.lowercased())
         guard let url = URL(string: urlString) else {
-            completionHandler(.failure(.badURL))
-            return
+            throw NetworkError.badURL
         }
 
         do {
@@ -40,14 +52,14 @@ struct GithubParser {
                         }
                     }
                 } catch {
-                    print("Debug: Error processing day: \(error)")
+                    print("Error processing day: \(error)")
                 }
             }
 
-            completionHandler(.success(mappedContributions))
+            return mappedContributions
 
         } catch {
-            completionHandler(.failure(.parseError))
+            throw NetworkError.parseError
         }
     }
 
@@ -55,16 +67,23 @@ struct GithubParser {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("XMLHttpRequest", forHTTPHeaderField: "X-Requested-With")
+        request.cachePolicy = .reloadIgnoringLocalCacheData
 
-        let (data, response) = try await URLSession.shared.data(for: request)
+        do {
+            let (data, response) = try await URLSession.shared.data(for: request)
 
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200,
-              let html = String(data: data, encoding: .utf8) else {
-            throw NetworkError.invalidResponse
+            guard let httpResponse = response as? HTTPURLResponse,
+                  httpResponse.statusCode == 200,
+                  let html = String(data: data, encoding: .utf8) else {
+                throw NetworkError.invalidResponse
+            }
+
+            return html
+        } catch let error as NetworkError {
+            throw error
+        } catch {
+            throw NetworkError.networkError(error)
         }
-
-        return html
     }
 
     static func parseDate(date: String) -> Date? {

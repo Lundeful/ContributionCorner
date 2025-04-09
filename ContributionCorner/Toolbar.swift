@@ -1,9 +1,3 @@
-//
-//  Toolbar.swift
-//  ContributionCorner
-//
-//  Created by Christoffer Lund on 19/06/2023.
-//
 
 import SwiftUI
 
