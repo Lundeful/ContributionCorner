@@ -1,9 +1,3 @@
-//
-//  ContributionsView.swift
-//  ContributionCorner
-//
-//  Created by Christoffer Lund on 17/01/2023.
-//
 
 import SwiftUI
 import AxisContribution
@@ -34,13 +28,12 @@ struct ContributionsView: View {
                             .frame(width: Theme.rowSize, height: Theme.rowSize)
                             .help("\(data.count.formatted()) contribution\(data.count == 1 ? "" : "s") on \(data.date.formatted(date: .abbreviated, time: .omitted))")
                     } else {
-                        // This will be part of the less/more boxes beneath the graph
                         RoundedRectangle(cornerRadius: 2)
                             .foregroundColor(Theme.foregroundColor)
                             .frame(width: Theme.rowSize, height: Theme.rowSize)
                     }
                 }
-                .id(viewModel.contributions) // This fixes bug where AxisContribution graph does not update
+                .id(viewModel.contributions)
                 .frame(height: 150)
             }
             if !viewModel.errorMessage.isEmpty {
@@ -55,11 +48,5 @@ struct ContributionsView: View {
         }
         .frame(width: 830)
         .padding()
-    }
-}
-
-struct ContributionsView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContributionsView(viewModel: ContributionsViewModel())
     }
 }
